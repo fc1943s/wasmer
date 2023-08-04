@@ -193,7 +193,7 @@ impl CodeMemory {
 
         if let Some(info) = &func.unwind_info {
             registry
-                .register(vmfunc.as_ptr() as usize, 0, func_len as u32, *info)
+                .register(vmfunc.as_ptr() as usize, 0, func_len as u32, &info.into())
                 .expect("failed to register unwind information");
         }
 

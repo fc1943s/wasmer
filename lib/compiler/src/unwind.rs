@@ -43,6 +43,17 @@ impl<'a> From<&'a CompiledFunctionUnwindInfo> for CompiledFunctionUnwindInfoRef<
     }
 }
 
+impl<'a> From<&'a CompiledFunctionUnwindInfoRef<'a>> for CompiledFunctionUnwindInfo {
+    fn from(uw: &'a CompiledFunctionUnwindInfoRef<'a>) -> Self {
+        match uw {
+            CompiledFunctionUnwindInfoRef::WindowsX64(d) => {
+                CompiledFunctionUnwindInfo::WindowsX64(d.to_vec())
+            }
+            CompiledFunctionUnwindInfoRef::Dwarf => CompiledFunctionUnwindInfo::Dwarf,
+        }
+    }
+}
+
 impl<'a> From<&'a ArchivedCompiledFunctionUnwindInfo> for CompiledFunctionUnwindInfoRef<'a> {
     fn from(uw: &'a ArchivedCompiledFunctionUnwindInfo) -> Self {
         match uw {

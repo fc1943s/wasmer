@@ -666,7 +666,7 @@ impl UniversalEngineInner {
             .last_mut()
             .unwrap()
             .unwind_registry_mut()
-            .publish(eh_frame)
+            .publish(Some(eh_frame))
             .map_err(|e| {
                 CompileError::Resource(format!("Error while publishing the unwind code: {}", e))
             })?;
